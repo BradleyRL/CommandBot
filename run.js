@@ -4,7 +4,7 @@ var fs = require("fs");
 var oldAuthor;
 
 // ADD YOUR BOT'S TOKEN HERE
-const token = "YOUR_BOTS_TOKEN";
+const token = "Mjc2NDA4OTU5NDI1MDUyNjc0.C3OxyA.SqHSMYSgbIPp9YhEZ62NAquOhjI";
 
 bot.on('ready', () => {
   
