@@ -2,9 +2,14 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 var fs = require("fs");
 var oldAuthor;
-
 var pg = require('pg');
 
+
+
+// ADD YOUR BOT'S TOKEN HERE
+const token = "Mjc2NDA4OTU5NDI1MDUyNjc0.C3OxyA.SqHSMYSgbIPp9YhEZ62NAquOhjI";
+
+bot.on('ready', () => {
 pg.defaults.ssl = true;
 pg.connect(process.env.DATABASE_URL, function(err, client) {
   if (err) throw err;
@@ -15,13 +20,7 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
     .on('row', function(row) {
       console.log(JSON.stringify(row));
     });
-});
-
-// ADD YOUR BOT'S TOKEN HERE
-const token = "Mjc2NDA4OTU5NDI1MDUyNjc0.C3OxyA.SqHSMYSgbIPp9YhEZ62NAquOhjI";
-
-bot.on('ready', () => {
-  
+});  
 });
 
 bot.on('message', message => {
