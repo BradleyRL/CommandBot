@@ -8,5 +8,8 @@
   },
   "engines": {
     "node": ""
-  }
+  },
+  "dependencies": {
+    "discord.js": ""
+  },
 }
