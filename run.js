@@ -3,6 +3,20 @@ const bot = new Discord.Client();
 var fs = require("fs");
 var oldAuthor;
 
+var pg = require('pg');
+
+pg.defaults.ssl = true;
+pg.connect(process.env.DATABASE_URL, function(err, client) {
+  if (err) throw err;
+  console.log('Connected to postgres! Getting schemas...');
+
+  client
+    .query('SELECT table_schema,table_name FROM information_schema.tables;')
+    .on('row', function(row) {
+      console.log(JSON.stringify(row));
+    });
+});
+
 // ADD YOUR BOT'S TOKEN HERE
 const token = "Mjc2NDA4OTU5NDI1MDUyNjc0.C3OxyA.SqHSMYSgbIPp9YhEZ62NAquOhjI";
 
@@ -21,12 +35,12 @@ bot.on('message', message => {
 		// want
 		var commandText = message.content.split("|",2);
 		var commandName = message.content.split(" ");
-		if(commandName[1].charAt(0) == "~")
+		if(commandName[1].charAt(0) == "!")
 			{
 				checkExistingCommand(commandText,commandName);
 				message.channel.sendMessage("Command " + commandName[1] + " has been created");
 			} else {
-				message.channel.sendMessage("Command must contain '~'");
+				message.channel.sendMessage("Command must contain '!'");
 			}
 	}
 
