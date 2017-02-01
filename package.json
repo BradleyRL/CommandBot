@@ -1,0 +1,12 @@
+{
+  "name": "bloodpact",
+  "version": "0.1",
+  "description": "Discord Bot",
+  "main": "run.js",
+  "scripts": {
+    "start": "node run.js"
+  },
+  "engines": {
+    "node": ""
+  }
+}
