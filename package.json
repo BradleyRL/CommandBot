@@ -1,6 +1,5 @@
 {
   "name": "bloodpact",
-  "version": "0.1",
   "description": "Discord Bot",
   "main": "run.js",
   "scripts": {
