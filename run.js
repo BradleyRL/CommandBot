@@ -1,20 +1,20 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 var fs = require("fs");
-var oldAuthor;
 var pg = require('pg');
 
 pg.defaults.ssl = true;
-pg.connect(process.env.DATABASE_URL, function(err, client) {
-  if (err) throw err;
-  console.log('Connected to postgres! Getting schemas...');
 
-  client
-    .query('SELECT table_schema,table_name FROM information_schema.tables;')
-    .on('row', function(row) {
-      console.log(JSON.stringify(row));
-    });
-});  
+var client = new pg.Client();
+
+client.connect(function (err) {
+  if (err) throw err;
+  console.log('Connected to postgres!...');
+});
+  
+
+
+	
 
 // ADD YOUR BOT'S TOKEN HERE
 const token = "Mjc2NDA4OTU5NDI1MDUyNjc0.C3OxyA.SqHSMYSgbIPp9YhEZ62NAquOhjI";
@@ -65,6 +65,11 @@ bot.on('message', message => {
 					}
 				if(com[i] == "~help")
 					{
+						client
+							.query('SELECT table_schema,table_name FROM information_schema.tables;')
+							.on('row', function(row) {
+							console.log(JSON.stringify(row));
+						});
 						message.channel.sendMessage("How to create commands:\n~createcommand ~NameOfCommand | Type whatever you want here");
 						break;
 					}
