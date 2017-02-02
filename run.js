@@ -5,7 +5,7 @@ var pg = require('pg');
 
 pg.defaults.ssl = true;
 
-var client = new pg.Client();
+var client = new pg.Client(process.env.DATABASE_URL);
 
 client.connect(function (err) {
   if (err) throw err;
