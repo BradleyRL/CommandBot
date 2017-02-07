@@ -96,7 +96,7 @@ function checkExistingCommand(commandText,commandName)
 	var com = commandName[1];
 	var desc = commandText[1];
 	var CE = false;
-	client.query('SELECT $2::text as test FROM commands where command=$1;',[com,'test'],function(err,result)	{
+	client.query('SELECT * FROM commands where command=$1;',[com],function(err,result)	{
 		if (err) throw err;
 		console.log(result.row[0]);
 	});
