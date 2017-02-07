@@ -21,7 +21,7 @@ var Info = sequelize.define('info', {
 	id:  {
 		type: Sequelize.STRING,
 		primaryKey:true
-	}
+	},
     name: Sequelize.STRING,
 	link: Sequelize.STRING
 })
