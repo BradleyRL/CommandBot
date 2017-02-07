@@ -95,11 +95,9 @@ function checkExistingCommand(commandText,commandName)
 	var com = commandName[1];
 	var desc = commandText[1];
 	var CE = false;
-	client
-		.query('SELECT 1 FROM commands where command=$1;'),[com],function(err,result)
-		{
+	client.query('SELECT 1 FROM commands where command=$1;'),[com],function(err,result)	{
 		console.log(JSON.stringify(result.rows));
-	});
+	};
 	
 	fs.readFile('./commands/commands.txt','utf8',function(err,f){
 		var findCommands = f.toString().split(";");
@@ -129,7 +127,7 @@ function createCommand(desc,b,com)
 		.query('INSERT INTO commands VALUES ($1,$2);'),[com,desc],function(err,result)
 		{
 		console.log('Inserted');
-	});
+	};
 	var fileName = "./commands/" + com + ".txt";
 	if(b == true)
 	{
