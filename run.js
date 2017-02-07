@@ -35,13 +35,13 @@ bot.on('message', message => {
 		// want
 		var commandText = message.content.split("|",2);
 		var commandName = message.content.split(" ");
-		if(commandName[1].charAt(0) == "!")
-			{
+		//if(commandName[1].charAt(0) == "!")
+			//{
 				checkExistingCommand(commandText,commandName);
 				message.channel.sendMessage("Command " + commandName[1] + " has been created");
-			} else {
-				message.channel.sendMessage("Command must contain '!'");
-			}
+			//} else {
+			//	message.channel.sendMessage("Command must contain '!'");
+			//}
 	}
 
 	/*
