@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 var fs = require("fs");
+var Sequelize = require("sequelize")
 //var pg = require('pg');
 //pg.defaults.ssl = true;
 
