@@ -26,7 +26,7 @@ bot.on('ready', () => {
 bot.on('message', message => {
 	// Makes sure the first word is ~createcommand
 	var checkMessage = message.content.split(" ");
-	if(checkMessage[0] == "~createcommand")
+	if(checkMessage[0] == "!createcommand")
 	{
 		// commandText gets grabbed by splitting the string with |
 		// commandName gets grabbed by splitting the string with spaces
@@ -95,6 +95,12 @@ function checkExistingCommand(commandText,commandName)
 	var com = commandName[1];
 	var desc = commandText[1];
 	var CE = false;
+	client
+		.query('SELECT 1 FROM commands where command=$1;'),[com],function(err,result)
+		{
+		console.log(JSON.stringify(result.rows));
+	});
+	
 	fs.readFile('./commands/commands.txt','utf8',function(err,f){
 		var findCommands = f.toString().split(";");
 		for(i = 0; i < findCommands.length; i++)
@@ -118,6 +124,12 @@ function checkExistingCommand(commandText,commandName)
 // Appends and/or creates the text files.
 function createCommand(desc,b,com)
 {
+	
+	client
+		.query('INSERT INTO commands VALUES ($1,$2);'),[com,desc],function(err,result)
+		{
+		console.log('Inserted');
+	});
 	var fileName = "./commands/" + com + ".txt";
 	if(b == true)
 	{
