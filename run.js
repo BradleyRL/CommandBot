@@ -122,7 +122,7 @@ function checkExistingCommand(commandText,commandName)
 	var com = commandName[1];
 	var desc = commandText[1];
 	var CE = false;
-	var exists = false;
+	var existe = false;
 	
 	Commands.findAll({
 			where: {			
@@ -130,13 +130,13 @@ function checkExistingCommand(commandText,commandName)
 			}
 	})
 		.then (function(commands) {
-			commands.forEach(log)
-			exists==true;
+			commands.forEach(log);
+			existe==true;
 	});
 		
-	if (!exists) {
-			console.log('No hay registros')
-		}
+	if (!existe) {
+			console.log('No hay registros');
+		};
 	
 	/*client.query('SELECT * FROM commands where command=$1;',[com],function(err,result)	{
 		if (err) throw err;
