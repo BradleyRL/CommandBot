@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "discord.js": "",
-	"pg":""
+	"pg":"",
+	"pg-hstore":"",
+	"sequelize":""
   }
 }

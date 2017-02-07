@@ -1,17 +1,32 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 var fs = require("fs");
-var pg = require('pg');
-pg.defaults.ssl = true;
+//var pg = require('pg');
+//pg.defaults.ssl = true;
 
-
-
-var client = new pg.Client(process.env.DATABASE_URL);
-
-client.connect(function (err) {
-  if (err) throw err;
-  console.log('Connected to postgres!...');
+var sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: true
+  }
 });
+
+
+sequelize
+  .authenticate()
+  .then(function(err) {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(function (err) {
+    console.log('Unable to connect to the database:', err);
+  });
+
+//var client = new pg.Client(process.env.DATABASE_URL);
+
+//client.connect(function (err) {
+  //if (err) throw err;
+  //console.log('Connected to postgres!...');
+//});
   
 
 
@@ -66,11 +81,11 @@ bot.on('message', message => {
 					}
 				if(com[i] == "~help")
 					{
-						client
+						/*client
 							.query('SELECT table_schema,table_name FROM information_schema.tables;')
 							.on('row', function(row) {
 							console.log(JSON.stringify(row));
-						});
+						});*/
 						message.channel.sendMessage("How to create commands:\n~createcommand ~NameOfCommand | Type whatever you want here");
 						break;
 					}
@@ -96,10 +111,10 @@ function checkExistingCommand(commandText,commandName)
 	var com = commandName[1];
 	var desc = commandText[1];
 	var CE = false;
-	client.query('SELECT * FROM commands where command=$1;',[com],function(err,result)	{
+	/*client.query('SELECT * FROM commands where command=$1;',[com],function(err,result)	{
 		if (err) throw err;
 		console.log(result.row[0]);
-	});
+	});*/
 	
 	fs.readFile('./commands/commands.txt','utf8',function(err,f){
 		var findCommands = f.toString().split(";");
@@ -124,12 +139,12 @@ function checkExistingCommand(commandText,commandName)
 // Appends and/or creates the text files.
 function createCommand(desc,b,com)
 {
-	
+	/*
 	client
 		.query('INSERT INTO commands VALUES ($1,$2);',[com,desc],function(err,result)
 		{
 		console.log('Inserted');
-	});
+	});*/
 	var fileName = "./commands/" + com + ".txt";
 	if(b == true)
 	{
