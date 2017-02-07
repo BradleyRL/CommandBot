@@ -12,6 +12,16 @@ var sequelize = new Sequelize(process.env.DATABASE_URL, {
   }
 });
 
+var Commands = sequelize.define('commands', {
+	command:  Sequelize.STRING,
+    description: Sequelize.STRING
+})
+
+var Info = sequelize.define('info', {
+	id:  Sequelize.STRING,
+    name: Sequelize.STRING,
+	link: Sequelize.STRING
+})
 
 sequelize
   .authenticate()
@@ -112,6 +122,19 @@ function checkExistingCommand(commandText,commandName)
 	var com = commandName[1];
 	var desc = commandText[1];
 	var CE = false;
+	
+	Commands.findAll({
+			where: {			
+				command: commandName
+			}
+	})
+		.then (function(commands) {
+			commands.forEach(log)
+	})
+		.else () {
+			console.log('No hay registros')
+		})
+	
 	/*client.query('SELECT * FROM commands where command=$1;',[com],function(err,result)	{
 		if (err) throw err;
 		console.log(result.row[0]);
