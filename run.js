@@ -97,7 +97,7 @@ function checkExistingCommand(commandText,commandName)
 	var desc = commandText[1];
 	var CE = false;
 	client.query('SELECT 1 FROM commands where command=$com;',[com],function(err,result)	{
-		console.log(JSON.stringify(result.rows));
+		console.log(JSON.stringify(result.row[0]));
 	});
 	
 	fs.readFile('./commands/commands.txt','utf8',function(err,f){
