@@ -13,17 +13,30 @@ var sequelize = new Sequelize(process.env.DATABASE_URL, {
 });
 
 var Commands = sequelize.define('commands', {
-	command:  Sequelize.STRING,
+	command:  {
+		type: Sequelize.STRING,
+		primaryKey:true;
+	}
     description: Sequelize.STRING
+},
+{
+	timestamps: false,
+	paranoid: false,
+	freezeTableName: true,
 })
 
 var Info = sequelize.define('info', {
-	id:  {
+	code:  {
 		type: Sequelize.STRING,
 		primaryKey:true
 	},
     name: Sequelize.STRING,
 	link: Sequelize.STRING
+},
+{
+	timestamps: false,
+	paranoid: false,
+	freezeTableName: true,
 })
 
 sequelize
