@@ -63,17 +63,19 @@ bot.on('message', message => {
 	{
 		var commandText = message.content.split("|",2);
 		var commandName = message.content.split(" ");
-		checkExistingCommand(commandText,commandName);
+		checkExistingCommand(commandText,commandName, message);
 		
 	} else if (checkMessage[0] == "!addinfo")
 		{
 			var commandText = message.content.split("|",3);
 			var commandName = message.content.split(" ");
-			checkExistingInfo(commandText,commandName);
+			checkExistingInfo(commandText,commandName, message);
 		} 
 		else if (checkMessage[0] == "!info") 
 			{
 				var infotext = message.content.split(" ");
+				console.log(infotext);
+				console.log ("size: "+infotext.lenght)
 				if 	(infotext.lenght == 1) {
 					reply(message,"Please check your messages")
 				}
@@ -113,7 +115,7 @@ bot.on('message', message => {
 */  
 });
 
-function checkExistingCommand(commandText,commandName)
+function checkExistingCommand(commandText,commandName,message)
 {
 	var com = commandName[1];
 	var desc = commandText[1].trim();
@@ -152,7 +154,7 @@ function checkExistingCommand(commandText,commandName)
 		})
 };
 
-function checkExistingInfo(commandText,commandName)
+function checkExistingInfo(commandText,commandName,message)
 {
 	var com = commandName[1];
 	var desc = commandText[1].trim();
