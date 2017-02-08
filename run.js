@@ -10,9 +10,7 @@ var sequelize = new Sequelize(process.env.DATABASE_URL, {
 	dialectOptions: {
 		ssl: true
 	},
-	timestamps: false,
-	paranoid: false,
-	freezeTableName: true
+	timestamps: false
 });
 
 var Commands = sequelize.define('commands', {
