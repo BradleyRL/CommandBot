@@ -17,7 +17,7 @@ var Commands = sequelize.define('commands', {
 	command:  {
 		type: Sequelize.STRING,
 		primaryKey:true
-	}
+	},
     description: Sequelize.STRING
 },
 {
