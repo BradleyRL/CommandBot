@@ -82,7 +82,7 @@ bot.on('message', message => {
 				} else {
 					console.log(infoText[0].trim().toUpperCase());
 					console.log(infoText[1].trim().toUpperCase());
-					var codeId = infoText[2].trim().toUpperCase();
+					var codeId = infoText[1].trim().toUpperCase();
 					sendInfo(message,codeId)
 				}
 			}
