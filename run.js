@@ -16,7 +16,7 @@ var sequelize = new Sequelize(process.env.DATABASE_URL, {
 var Commands = sequelize.define('commands', {
 	command:  {
 		type: Sequelize.STRING,
-		primaryKey:true;
+		primaryKey:true
 	}
     description: Sequelize.STRING
 },
