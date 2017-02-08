@@ -168,53 +168,9 @@ function checkExistingCommand(commandText,commandName)
 						console.log('Se inserto');
 					}
 				})
-	
-	/*
-	fs.readFile('./commands/commands.txt','utf8',function(err,f){
-		var findCommands = f.toString().split(";");
-		for(i = 0; i < findCommands.length; i++)
-		{
-			if(com == findCommands[i])
-			{
-				CE = true;
 			}
 		}
-		if(CE == true)
-		{
-			createCommand(desc,true,com);
-		} else if (CE == false)
-		{
-			createCommand(desc,false,com);
-		}
-	});
-	*/
 }
 
 
-// Appends and/or creates the text files.
-/*function createCommand(desc,b,com)
-{
-	var fileName = "./commands/" + com + ".txt";
-	if(b == true)
-	{
-		fs.writeFile(fileName,desc,function(err){
-		if(err) {
-			return console.error(err);
-		}
-		});
-	} else if (b == false){
-		fs.appendFile('./commands/commands.txt',com+';',(err) =>
-		{
-		if(err) throw err;
-		});
-		
-		fs.writeFile(fileName,desc,function(err){
-		if(err) {
-			return console.error(err);
-		}
-		});
-	}
-	return;
-}
-*/
 bot.login(token);
