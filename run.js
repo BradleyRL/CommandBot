@@ -148,7 +148,7 @@ function checkExistingCommand(commandText,commandName)
 					description : desc
 				}
 				)
-				.complete(function(err, commands) {
+				.then(function(err) {
 					if (err) {
 						console.log(err);
 					} else {
