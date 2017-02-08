@@ -118,7 +118,7 @@ bot.on('message', message => {
 
 function sendInfoList(message)
 {
-	message.sendMessage(message.author,"Hello");
+	message.author.sendMessage("Hello");	
 };
 
 function checkExistingCommand(commandText,commandName,message)
