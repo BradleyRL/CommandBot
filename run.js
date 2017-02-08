@@ -156,7 +156,7 @@ function checkExistingCommand(commandText,commandName)
 					}
 				})
 			}
-		}
+		})
 };
 
 
