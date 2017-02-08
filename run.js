@@ -59,7 +59,7 @@ bot.on('message', message => {
 	
 	var checkMessage = message.content.split(" ");
 	var who = message.user.
-	if(checkMessage[0] == "!createcommand")
+	if (checkMessage[0] == "!createcommand")
 	{
 		var commandText = message.content.split("|",2);
 		var commandName = message.content.split(" ");
@@ -71,7 +71,7 @@ bot.on('message', message => {
 			var commandName = message.content.split(" ");
 			checkExistingInfo(commandText,commandName);
 		} 
-	if (checkMessage[0] == "!info") 
+		if (checkMessage[0] == "!info") 
 			{
 				var infotext = message.content.split(" ");
 				if 	(infotext.lenght == 1) {
