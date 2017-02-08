@@ -152,7 +152,7 @@ function checkExistingCommand(commandText,commandName)
 						console.log('Hay registros, se hace update');
 						Commands.update (
 						{ description : desc },
-						{ where: { command: com }}
+						{ where: { command: com }} )
 			} else {
 				console.log('No Hay registros se hace insert');
 				Commands.create (
@@ -167,7 +167,7 @@ function checkExistingCommand(commandText,commandName)
 					} else {
 						console.log('Se inserto');
 					}
-				}
+				})
 	
 	/*
 	fs.readFile('./commands/commands.txt','utf8',function(err,f){
