@@ -149,16 +149,27 @@ function checkExistingCommand(commandText,commandName)
 		.then (function(commands) {
 			//commands.forEach(log);
 			if (commands.length > 0) {
-						console.log('Hay registros');
-			} else {console.log('No Hay registros');}
-	});
-		
+						console.log('Hay registros, se hace update');
+						Commands.update (
+						{ description : desc },
+						{ where: { command: com }}
+			} else {
+				console.log('No Hay registros se hace insert');
+				Commands.create (
+				{
+					command: com,
+					description : desc
+				}
+				)
+				.complete(function(err, commands) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log('Se inserto');
+					}
+				}
 	
-	/*client.query('SELECT * FROM commands where command=$1;',[com],function(err,result)	{
-		if (err) throw err;
-		console.log(result.row[0]);
-	});*/
-	
+	/*
 	fs.readFile('./commands/commands.txt','utf8',function(err,f){
 		var findCommands = f.toString().split(";");
 		for(i = 0; i < findCommands.length; i++)
@@ -176,18 +187,13 @@ function checkExistingCommand(commandText,commandName)
 			createCommand(desc,false,com);
 		}
 	});
-	
+	*/
 }
 
+
 // Appends and/or creates the text files.
-function createCommand(desc,b,com)
+/*function createCommand(desc,b,com)
 {
-	/*
-	client
-		.query('INSERT INTO commands VALUES ($1,$2);',[com,desc],function(err,result)
-		{
-		console.log('Inserted');
-	});*/
 	var fileName = "./commands/" + com + ".txt";
 	if(b == true)
 	{
@@ -210,5 +216,5 @@ function createCommand(desc,b,com)
 	}
 	return;
 }
-
+*/
 bot.login(token);
