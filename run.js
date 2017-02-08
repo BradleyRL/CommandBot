@@ -73,12 +73,15 @@ bot.on('message', message => {
 		} 
 		else if (checkMessage[0] == "!info") 
 			{
-				var infotext = message.content.split(" ");
-				console.log(infotext);
-				console.log ("size: "+infotext.length)
-				if 	(infotext.length  == 1) {
+				var infoText = message.content.split(" ");
+				console.log(infoText);
+				console.log ("size: "+infoText.length)
+				if 	(infoText.length  == 1) {
 					message.reply("Please check your messages");
 					sendInfoList(message)
+				} else {
+					var codeId = infoText[2].trim().toUpperCase();
+					sendInfo(message,codeId)
 				}
 			}
 
@@ -116,6 +119,14 @@ bot.on('message', message => {
 */  
 });
 
+function sendInfo(message,codeId)
+{
+	Info.findOne({ where: {code: codeId} }).then(function(champ) {
+		console.log(champ.name);
+		console.log(champ.link);
+	})
+};
+
 function sendInfoList(message)
 {
 	message.author.sendMessage("Hello");	
@@ -123,7 +134,7 @@ function sendInfoList(message)
 
 function checkExistingCommand(commandText,commandName,message)
 {
-	var com = commandName[1];
+	var com = commandName[1].toLowerCase();
 	var desc = commandText[1].trim();
 			
 	Commands.findAll({
@@ -158,7 +169,7 @@ function checkExistingCommand(commandText,commandName,message)
 
 function checkExistingInfo(commandText,commandName,message)
 {
-	var com = commandName[1];
+	var com = commandName[1].toUpperCase();
 	var desc = commandText[1].trim();
 	var mylink = commandText[2].trim();
 	console.log(com);
