@@ -75,8 +75,8 @@ bot.on('message', message => {
 			{
 				var infotext = message.content.split(" ");
 				console.log(infotext);
-				console.log ("size: "+infotext.lenght)
-				if 	(infotext.lenght == 1) {
+				console.log ("size: "+infotext.length)
+				if 	(infotext.length  == 1) {
 					reply(message,"Please check your messages")
 				}
 			}
@@ -142,14 +142,10 @@ function checkExistingCommand(commandText,commandName,message)
 					description : desc
 				}
 				)
-				.then(function(err) {
-					if (err) {
-						console.log(err);
-					} else {
-						console.log('Se inserto');
-						message.channel.sendMessage("Command !" + com + " has been created");
-					}
-				})
+				console.log('Se inserto');
+				message.channel.sendMessage("Command !" + com + " has been created");
+					
+			
 			}
 		})
 };
@@ -187,14 +183,9 @@ function checkExistingInfo(commandText,commandName,message)
 					link : mylink
 				}
 				)
-				.then(function(err) {
-					if (err) {
-						console.log(err);
-					} else {
-						console.log('Se inserto');
-						message.channel.sendMessage("info for " + com + " has been created");
-					}
-				})
+				console.log('Se inserto');
+				message.channel.sendMessage("info for " + com + " has been created");
+							
 			}
 		})
 };
