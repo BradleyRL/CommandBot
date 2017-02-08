@@ -6,10 +6,13 @@ var Sequelize = require("sequelize")
 //pg.defaults.ssl = true;
 
 var sequelize = new Sequelize(process.env.DATABASE_URL, {
-  dialect: 'postgres',
-  dialectOptions: {
-    ssl: true
-  }
+	dialect: 'postgres',
+	dialectOptions: {
+		ssl: true
+	},
+	timestamps: false,
+	paranoid: false,
+	freezeTableName: true
 });
 
 var Commands = sequelize.define('commands', {
@@ -22,7 +25,7 @@ var Commands = sequelize.define('commands', {
 {
 	timestamps: false,
 	paranoid: false,
-	freezeTableName: true,
+	freezeTableName: true
 })
 
 var Info = sequelize.define('info', {
@@ -36,7 +39,7 @@ var Info = sequelize.define('info', {
 {
 	timestamps: false,
 	paranoid: false,
-	freezeTableName: true,
+	freezeTableName: true
 })
 
 sequelize
@@ -142,8 +145,9 @@ function checkExistingCommand(commandText,commandName)
 	
 	Commands.findAll({
 			where: {			
-				command: commandName
-			}
+				command: com
+			},
+			attributes : ['command']
 	})
 		.then (function(commands) {
 			commands.forEach(log);
