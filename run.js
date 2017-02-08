@@ -77,7 +77,7 @@ bot.on('message', message => {
 				console.log(infotext);
 				console.log ("size: "+infotext.length)
 				if 	(infotext.length  == 1) {
-					bot.reply(message,"Please check your messages")
+					message.reply("Please check your messages")
 				}
 			}
 
