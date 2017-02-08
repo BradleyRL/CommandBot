@@ -56,34 +56,22 @@ bot.on('ready', () => {
 });
 
 bot.on('message', message => {
-	// Makes sure the first word is ~createcommand
+	
 	var checkMessage = message.content.split(" ");
 	if(checkMessage[0] == "!createcommand")
 	{
-		// commandText gets grabbed by splitting the string with |
-		// commandName gets grabbed by splitting the string with spaces
-		// command Name must have '~' in it just so you can't use any word you
-		// want
 		var commandText = message.content.split("|",2);
 		var commandName = message.content.split(" ");
-		//if(commandName[1].charAt(0) == "!")
-			//{
-				checkExistingCommand(commandText,commandName);
-				message.channel.sendMessage("Command " + commandName[1] + " has been created");
-			//} else {
-			//	message.channel.sendMessage("Command must contain '!'");
-			//}
+		checkExistingCommand(commandText,commandName);
+		message.channel.sendMessage("Command !" + commandName[1] + " has been created");
+	} else if (checkMessage[0] == "!addinfo")
+	{
+		var commandText = message.content.split("|",3);
+		var commandName = message.content.split(" ");
+		checkExistingInfo(commandText,commandName);
 	}
 
-	/*
-	 * Checks the commands.txt file to see if anyone posted the command.
-	 * commands.txt is split with semi-colons. For loop to check every single
-	 * command. If there is a match, then it opens up the txt file associate
-	 * with that command. If there are multiple pictures then the user should
-	 * type $random{} and then type in all the pictures in the brackets
-	 * separated by semi-colons. If there is no $random{} then it just sends the
-	 * message.
-	 */
+/*
 	fs.readFile('./commands/commands.txt','utf8',function(err,f){
 		var com = f.toString().split(";");
 		for(i = 0; i < com.length; i++)
@@ -97,11 +85,6 @@ bot.on('message', message => {
 					}
 				if(com[i] == "~help")
 					{
-						/*client
-							.query('SELECT table_schema,table_name FROM information_schema.tables;')
-							.on('row', function(row) {
-							console.log(JSON.stringify(row));
-						});*/
 						message.channel.sendMessage("How to create commands:\n~createcommand ~NameOfCommand | Type whatever you want here");
 						break;
 					}
@@ -119,13 +102,13 @@ bot.on('message', message => {
 			}
 		}
 	});
-  
+*/  
 });
 
 function checkExistingCommand(commandText,commandName)
 {
 	var com = commandName[1];
-	var desc = commandText[1];
+	var desc = commandText[1].trim();
 			
 	Commands.findAll({
 			where: {			
@@ -134,7 +117,7 @@ function checkExistingCommand(commandText,commandName)
 			attributes : ['command']
 	})
 		.then (function(commands) {
-			//commands.forEach(log);
+			
 			if (commands.length > 0) {
 						console.log('Hay registros, se hace update');
 						Commands.update (
@@ -146,6 +129,49 @@ function checkExistingCommand(commandText,commandName)
 				{
 					command: com,
 					description : desc
+				}
+				)
+				.then(function(err) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log('Se inserto');
+					}
+				})
+			}
+		})
+};
+
+function checkExistingInfo(commandText,commandName)
+{
+	var com = commandName[1];
+	var desc = commandText[1].trim();
+	var mylink = commandText[2].trim();
+	console.log(com);
+	console.log(desc);
+	console.log(mylink);	
+	Info.findAll({
+			where: {			
+				code: com
+			},
+			attributes : ['code']
+	})
+		.then (function(info) {
+			
+			if (info.length > 0) {
+						console.log('Hay registros, se hace update');
+						Info.update (
+						{ name : desc,
+						  link : mylink	
+						},
+						{ where: { code: com }} )
+			} else {
+				console.log('No Hay registros se hace insert');
+				Info.create (
+				{
+					code: com,
+					name : desc,
+					link : mylink
 				}
 				)
 				.then(function(err) {
