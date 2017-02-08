@@ -70,7 +70,8 @@ bot.on('message', message => {
 			var commandText = message.content.split("|",3);
 			var commandName = message.content.split(" ");
 			checkExistingInfo(commandText,commandName);
-		} else if (checkMessage[0] == "!info") 
+		} 
+	if (checkMessage[0] == "!info") 
 			{
 				var infotext = message.content.split(" ");
 				if 	(infotext.lenght == 1) {
