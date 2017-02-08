@@ -2,8 +2,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 var fs = require("fs");
 var Sequelize = require("sequelize")
-//var pg = require('pg');
-//pg.defaults.ssl = true;
+
 
 var sequelize = new Sequelize(process.env.DATABASE_URL, {
 	timestamps: false,
@@ -22,13 +21,6 @@ sequelize
     console.log('Unable to connect to the database:', err);
   });
 
-//var client = new pg.Client(process.env.DATABASE_URL);
-
-//client.connect(function (err) {
-  //if (err) throw err;
-  //console.log('Connected to postgres!...');
-//});
-  
 
 var Commands = sequelize.define('commands', {
 	command:  {
@@ -57,14 +49,10 @@ var Info = sequelize.define('info', {
 	freezeTableName: true
 })
 
-
-	
-
 // ADD YOUR BOT'S TOKEN HERE
 const token = "Mjc2NDA4OTU5NDI1MDUyNjc0.C3OxyA.SqHSMYSgbIPp9YhEZ62NAquOhjI";
 
 bot.on('ready', () => {
-
 });
 
 bot.on('message', message => {
@@ -138,8 +126,7 @@ function checkExistingCommand(commandText,commandName)
 {
 	var com = commandName[1];
 	var desc = commandText[1];
-	var CE = false;
-		
+			
 	Commands.findAll({
 			where: {			
 				command: com
@@ -170,7 +157,7 @@ function checkExistingCommand(commandText,commandName)
 				})
 			}
 		}
-}
+};
 
 
 bot.login(token);
