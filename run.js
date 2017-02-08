@@ -6,12 +6,29 @@ var Sequelize = require("sequelize")
 //pg.defaults.ssl = true;
 
 var sequelize = new Sequelize(process.env.DATABASE_URL, {
+	timestamps: false,
 	dialect: 'postgres',
 	dialectOptions: {
 		ssl: true
-	},
-	timestamps: false
+	}	
 });
+
+sequelize
+  .authenticate()
+  .then(function(err) {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(function (err) {
+    console.log('Unable to connect to the database:', err);
+  });
+
+//var client = new pg.Client(process.env.DATABASE_URL);
+
+//client.connect(function (err) {
+  //if (err) throw err;
+  //console.log('Connected to postgres!...');
+//});
+  
 
 var Commands = sequelize.define('commands', {
 	command:  {
@@ -39,23 +56,6 @@ var Info = sequelize.define('info', {
 	paranoid: false,
 	freezeTableName: true
 })
-
-sequelize
-  .authenticate()
-  .then(function(err) {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(function (err) {
-    console.log('Unable to connect to the database:', err);
-  });
-
-//var client = new pg.Client(process.env.DATABASE_URL);
-
-//client.connect(function (err) {
-  //if (err) throw err;
-  //console.log('Connected to postgres!...');
-//});
-  
 
 
 	
