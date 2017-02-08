@@ -58,18 +58,25 @@ bot.on('ready', () => {
 bot.on('message', message => {
 	
 	var checkMessage = message.content.split(" ");
+	var who = message.user.
 	if(checkMessage[0] == "!createcommand")
 	{
 		var commandText = message.content.split("|",2);
 		var commandName = message.content.split(" ");
 		checkExistingCommand(commandText,commandName);
-		message.channel.sendMessage("Command !" + commandName[1] + " has been created");
+		
 	} else if (checkMessage[0] == "!addinfo")
-	{
-		var commandText = message.content.split("|",3);
-		var commandName = message.content.split(" ");
-		checkExistingInfo(commandText,commandName);
-	}
+		{
+			var commandText = message.content.split("|",3);
+			var commandName = message.content.split(" ");
+			checkExistingInfo(commandText,commandName);
+		} else if (checkMessage[0] == "!info") 
+			{
+				var infotext = message.content.split(" ");
+				if 	(infotext.lenght == 1) {
+					reply(message,"Please check your messages")
+				}
+			}
 
 /*
 	fs.readFile('./commands/commands.txt','utf8',function(err,f){
@@ -123,6 +130,7 @@ function checkExistingCommand(commandText,commandName)
 						Commands.update (
 						{ description : desc },
 						{ where: { command: com }} )
+						message.channel.sendMessage("Command !" + com + " has been updated");
 			} else {
 				console.log('No Hay registros se hace insert');
 				Commands.create (
@@ -136,6 +144,7 @@ function checkExistingCommand(commandText,commandName)
 						console.log(err);
 					} else {
 						console.log('Se inserto');
+						message.channel.sendMessage("Command !" + com + " has been created");
 					}
 				})
 			}
@@ -165,6 +174,7 @@ function checkExistingInfo(commandText,commandName)
 						  link : mylink	
 						},
 						{ where: { code: com }} )
+						message.channel.sendMessage("info for " + com + " has been updated");
 			} else {
 				console.log('No Hay registros se hace insert');
 				Info.create (
@@ -179,6 +189,7 @@ function checkExistingInfo(commandText,commandName)
 						console.log(err);
 					} else {
 						console.log('Se inserto');
+						message.channel.sendMessage("info for " + com + " has been created");
 					}
 				})
 			}
