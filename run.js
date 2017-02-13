@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-var fs = require("fs");
 var Sequelize = require("sequelize")
 
 
@@ -124,14 +123,25 @@ bot.on('message', message => {
 function sendInfo(message,codeId)
 {
 	Info.findOne({ where: {code: codeId} }).then(function(champ) {
-		console.log(champ.name);
-		console.log(champ.link);
+		//console.log(champ.name);
+		//console.log(champ.link);
+		if (champ.length > 0) {
+			message.channel.sendMessage(champ.link)
+		} else {
+			message.channel.sendMessage("Sorry, I dont have info for that champ..")
+		}
 	})
 };
 
 function sendInfoList(message)
 {
-	message.author.sendMessage("Hello");	
+	message.author.sendMessage("Hi, this is the list of Champs I currently have info for.");	
+	Info.findAll({
+			attributes : ['codeId','name']
+	})
+		.then (function(info) {
+					message.author.sendMessage(info);	
+		})
 };
 
 function checkExistingCommand(commandText,commandName,message)
