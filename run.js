@@ -140,7 +140,7 @@ function sendInfoList(message)
 			attributes : ['code','name']
 	})
 		.then (function(info) {
-					for (i=0, i< info.length; i++) {
+					for (i=0; i< info.length; i++) {
 					message.author.sendMessage(info[i].code +"-->"+ info[i].name);	
 					}
 		})
