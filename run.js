@@ -140,7 +140,8 @@ function sendInfoList(message)
 			attributes : ['code','name']
 	})
 		.then (function(info) {
-					var output = JSON.stringify(info).replace(/[^\n\r\sa-zA-Z0-9:]/g, "");					
+					var output = JSON.stringify(info).replace(/[&\/\\#,+()$~%.'"*?<>{}]/g, '');
+					//(/[^\n\r\sa-zA-Z0-9:]/g, "");					
 					message.author.sendMessage(output);	
 		})
 };
