@@ -125,7 +125,7 @@ function sendInfo(message,codeId)
 	Info.findOne({ where: {code: codeId} }).then(function(champ) {
 		//console.log(champ.name);
 		//console.log(champ.link);
-		if (champ.length > 0) {
+		if (champ != null) {
 			message.channel.sendMessage(champ.link)
 		} else {
 			message.channel.sendMessage("Sorry, I dont have info for that champ..")
@@ -137,7 +137,7 @@ function sendInfoList(message)
 {
 	message.author.sendMessage("Hi, this is the list of Champs I currently have info for.");	
 	Info.findAll({
-			attributes : ['codeId','name']
+			attributes : ['code','name']
 	})
 		.then (function(info) {
 					message.author.sendMessage(info);	
