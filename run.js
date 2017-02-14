@@ -112,7 +112,7 @@ function sendCommand(message,codeId)
 }
 
 
-sendCommadsList(message)
+function sendCommadsList(message)
 {
 	message.author.sendMessage("This is the list of commands you can use :");	
 	Command.findAll({
