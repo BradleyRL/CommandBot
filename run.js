@@ -91,7 +91,7 @@ bot.on('message', message => {
 				if(commandName[0].charAt(0) == "!") {
 					
 					console.log(commandName);
-					var codeId = infoText[0].trim().toUpperCase().replace("!","");
+					var codeId = commandName[0].trim().toUpperCase().replace("!","");
 					sendCommand(message,codeId)
 				}
 			}
