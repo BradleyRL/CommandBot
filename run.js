@@ -52,10 +52,9 @@ var Info = sequelize.define('info', {
 const token = "MjgxMTcwNjI2MTE3NjMyMDEw.C4UGAw.NkC9m2T-WPS6TdXg2ttnlMKW0Pg";
 const botName = "TheCollector";
 
-bot.on('ready', () => {
-	
-	Info.destroy({ truncate : true, cascade: false });
-	Commands.destroy({ truncate : true, cascade: false })
+bot.on('ready', () => {	
+	//Info.destroy({ truncate : true, cascade: false });
+	//Commands.destroy({ truncate : true, cascade: false })
 });
 
 bot.on('message', message => {
