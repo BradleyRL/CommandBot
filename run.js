@@ -49,7 +49,8 @@ var Info = sequelize.define('info', {
 })
 
 // ADD YOUR BOT'S TOKEN HERE
-const token = "Mjc2NDA4OTU5NDI1MDUyNjc0.C3OxyA.SqHSMYSgbIPp9YhEZ62NAquOhjI";
+const token = "MjgxMTcwNjI2MTE3NjMyMDEw.C4UGAw.NkC9m2T-WPS6TdXg2ttnlMKW0Pg";
+const botName = "TheCollector";
 
 bot.on('ready', () => {
 });
@@ -60,6 +61,8 @@ bot.on('message', message => {
 	//var who = 
 	console.log(message.author);
 	console.log(message.author.username);
+	
+	if (message.author.username != botName) {
 	if (checkMessage[0] == "!createcommand")
 	{
 		var commandText = message.content.split("|",2);
@@ -98,6 +101,7 @@ bot.on('message', message => {
 				}
 			}
 			
+	}
 });
 
 function sendCommand(message,codeId)
