@@ -85,13 +85,16 @@ bot.on('message', message => {
 					sendInfo(message,codeId)
 				}
 			}
-			else if(commandName[1].charAt(0) == "!") {
-					var commandName = message.content.split(" ");
+			else 
+			{
+				var commandName = message.content.split(" ");
+				if(commandName[1].charAt(0) == "!") {
+					
 					console.log(commandName);
 					var codeId = infoText[0].trim().toUpperCase().replace("!","");
 					sendCommand(message,codeId)
 				}
-				
+			}
 			
 });
 
