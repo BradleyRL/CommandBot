@@ -85,40 +85,46 @@ bot.on('message', message => {
 					sendInfo(message,codeId)
 				}
 			}
-
-/*
-	fs.readFile('./commands/commands.txt','utf8',function(err,f){
-		var com = f.toString().split(";");
-		for(i = 0; i < com.length; i++)
-		{
-			if(message.content == com[i])
-			{
-				if(com[i] == "~commands")
-					{
-						message.channel.sendMessage(com);
-						break;
-					}
-				if(com[i] == "~help")
-					{
-						message.channel.sendMessage("How to create commands:\n~createcommand ~NameOfCommand | Type whatever you want here");
-						break;
-					}
-				var command = "./commands/" + com[i] + ".txt";
-				fs.readFile(command,'utf8', function(err,f){
-				try{
-					var com2 = f.toString().split(";");
-					var num = Math.random() * ((com2.length - 1) - 0) + 0;
-					message.channel.sendMessage(com2[Math.floor(num)]);
+			else {
+				var commandName = message.content.split(" ");
+				if(commandName[1].charAt(0) == "!") {}
+					console.log(commandName);
+					var codeId = infoText[0].trim().toUpperCase().replace("!","");
+					sendCommand(message,codeId)
 				}
-				catch(err) {
-					console.error("",err);
-				}
-				});
+				
 			}
-		}
-	});
-*/  
 });
+
+function sendCommand(message,codeId)
+{
+	if (codeId == "help") {
+		sendCommadsList(message)
+	}
+	else {
+		Command.findOne({ where: {command: codeId} }).then(function(command) {
+
+		if (command != null) {
+			message.channel.sendMessage(command.description)
+		} 
+	})
+		
+	}
+}
+
+
+sendCommadsList(message)
+{
+	message.author.sendMessage("This is the list of commands you can use :");	
+	Command.findAll({
+			attributes : ['command']
+	})
+		.then (function(command) {
+					for (i=0; i< command.length; i++) {
+					message.author.sendMessage(command[i].command);	
+					}
+		})
+}
 
 function sendInfo(message,codeId)
 {
@@ -135,13 +141,13 @@ function sendInfo(message,codeId)
 
 function sendInfoList(message)
 {
-	message.author.sendMessage("Hi, this is the list of Champs I currently have info for.");	
+	message.author.sendMessage("This is the list of Champs I currently have info for :");	
 	Info.findAll({
 			attributes : ['code','name']
 	})
 		.then (function(info) {
 					for (i=0; i< info.length; i++) {
-					message.author.sendMessage(info[i].code +"-->"+ info[i].name);	
+					message.author.sendMessage(info[i].code +" --> "+ info[i].name);	
 					}
 		})
 };
