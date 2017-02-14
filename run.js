@@ -100,7 +100,8 @@ bot.on('message', message => {
 
 function sendCommand(message,codeId)
 {
-	if (codeId == "HELPME") {
+	if (codeId == "helpme") {
+		message.reply("Please check your messages");
 		sendCommadsList(message)
 	}
 	else {
@@ -117,13 +118,14 @@ function sendCommand(message,codeId)
 
 function sendCommadsList(message)
 {
+	
 	message.author.sendMessage("This is the list of commands you can use :");	
 	Commands.findAll({
 			attributes : ['command']
 	})
 		.then (function(command) {
 					for (i=0; i< command.length; i++) {
-					message.author.sendMessage(command[i].command);	
+					message.author.sendMessage("!"+command[i].command);	
 					}
 		})
 }
