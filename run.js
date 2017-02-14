@@ -88,7 +88,7 @@ bot.on('message', message => {
 			else 
 			{
 				var commandName = message.content.split(" ");
-				if(commandName[1].charAt(0) == "!") {
+				if(commandName[0].charAt(0) == "!") {
 					
 					console.log(commandName);
 					var codeId = infoText[0].trim().toUpperCase().replace("!","");
