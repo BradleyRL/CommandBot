@@ -57,7 +57,9 @@ bot.on('ready', () => {
 bot.on('message', message => {
 	
 	var checkMessage = message.content.split(" ");
-	//var who = message.user.
+	//var who = 
+	console.log(message.author);
+	console.log(message.author.username);
 	if (checkMessage[0] == "!createcommand")
 	{
 		var commandText = message.content.split("|",2);
@@ -126,6 +128,7 @@ function sendCommadsList(message)
 		.then (function(command) {
 					for (i=0; i< command.length; i++) {
 					message.author.sendMessage("!"+command[i].command);	
+					//"+(i+1)+". 
 					}
 		})
 }
