@@ -53,16 +53,19 @@ const token = "MjgxMTcwNjI2MTE3NjMyMDEw.C4UGAw.NkC9m2T-WPS6TdXg2ttnlMKW0Pg";
 const botName = "TheCollector";
 
 bot.on('ready', () => {
+	
+	Info.destroy({ truncate : true, cascade: false });
+	Commands.destroy({ truncate : true, cascade: false })
 });
 
 bot.on('message', message => {
 	
 	var checkMessage = message.content.split(" ");
-	//var who = 
-	console.log(message.author);
-	console.log(message.author.username);
+	var who = message.author.username;
+	//console.log(message.author);
+	//console.log(message.author.username);
 	
-	if (message.author.username != botName) {
+	if (who != botName) {
 	if (checkMessage[0] == "!createcommand")
 	{
 		var commandText = message.content.split("|",2);
