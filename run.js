@@ -104,7 +104,7 @@ function sendCommand(message,codeId)
 		sendCommadsList(message)
 	}
 	else {
-		Command.findOne({ where: {command: codeId} }).then(function(command) {
+		Commands.findOne({ where: {command: codeId} }).then(function(command) {
 
 		if (command != null) {
 			message.channel.sendMessage(command.description)
@@ -118,7 +118,7 @@ function sendCommand(message,codeId)
 function sendCommadsList(message)
 {
 	message.author.sendMessage("This is the list of commands you can use :");	
-	Command.findAll({
+	Commands.findAll({
 			attributes : ['command']
 	})
 		.then (function(command) {
