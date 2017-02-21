@@ -11,6 +11,7 @@ var sequelize = new Sequelize(process.env.DATABASE_URL, {
 	}	
 });
 
+/*
 sequelize
   .authenticate()
   .then(function(err) {
@@ -19,7 +20,7 @@ sequelize
   .catch(function (err) {
     console.log('Unable to connect to the database:', err);
   });
-
+*/
 
 var Commands = sequelize.define('commands', {
 	command:  {
