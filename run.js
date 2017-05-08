@@ -63,11 +63,11 @@ bot.on('message', message => {
 	var checkMessage = message.content.split(" ");
 	var who = message.author.username;
 	//console.log(message.author);
-	console.log(message.author.username);
-	console.log(message.content);
+	//console.log(message.author.username);
+	//console.log(message.content);
 	
 	if (who == "Duel Skirmish") {
-		checkExistingCommand(message.content,"!duel", message);
+		updateDuel(message.content, message);
 	}
 	
 	if (who != botName) {
@@ -170,6 +170,16 @@ function sendInfoList(message)
 					}
 		})
 };
+
+function updateDuel(commandText,message)
+{
+	var com = "duel"
+	var desc = commandText.trim();
+	Commands.update (
+		{ description : desc },
+		{ where: { command: com }} )
+	message.channel.sendMessage("!" + com + " has been updated");
+}
 
 function checkExistingCommand(commandText,commandName,message)
 {
