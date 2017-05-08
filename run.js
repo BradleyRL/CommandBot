@@ -66,6 +66,10 @@ bot.on('message', message => {
 	console.log(message.author.username);
 	console.log(message.content);
 	
+	if (who == "Duel Skirmish") {
+		checkExistingCommand(message.content,"!duel", message);
+	}
+	
 	if (who != botName) {
 	if (checkMessage[0] == "!createcommand")
 	{
