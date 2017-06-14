@@ -50,8 +50,8 @@ var Info = sequelize.define('info', {
 })
 
 // ADD YOUR BOT'S TOKEN HERE
-const token = "MjgxMTcwNjI2MTE3NjMyMDEw.C4UGAw.NkC9m2T-WPS6TdXg2ttnlMKW0Pg";
-const botName = "TheCollector";
+const token = "MzI0NjYwNjI1MzI0MTEzOTMw.DCM7Ug.apJGgb_Uf6JyRGmrR35vs4MysaY";
+const botName = "Jarvis";
 
 bot.on('ready', () => {	
 	//Info.destroy({ truncate : true, cascade: false });
