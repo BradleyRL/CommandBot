@@ -50,7 +50,7 @@ var Info = sequelize.define('info', {
 })
 
 // ADD YOUR BOT'S TOKEN HERE
-const token = "MzI0NjYwNjI1MzI0MTEzOTMw.DCM7Ug.apJGgb_Uf6JyRGmrR35vs4MysaY";
+const token = "FU";
 const botName = "Jarvis";
 
 bot.on('ready', () => {	
